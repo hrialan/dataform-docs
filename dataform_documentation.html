@@ -58,24 +58,30 @@
                         <img src="img/dataform.png" alt="Dataform Logo" class="img-fluid mb-4 logo-align-middle">
                         <!-- Liste générée par JavaScript -->
                         
-        <div class="item" onclick="displayDetails('t_rpt_incremental_template', 'incremental', 'Reporting table for [usecase], ...', 'v_stg_template', '%0A%0A--%20Dataform%20allows%20you%20to%20make%20UPSERTS%20(INSERT%20OR%20UPDATE)%20into%20your%20target%20table%20using%20incremental%20tables.%0A--%20You%20can%20use%20the%20%60uniqueKey%60%20configuration%20to%20specify%20the%20columns%20that%20should%20be%20used%20to%20determine%20whether%20a%20row%20already%20exists%20in%20the%20target%20table.%0A--%20If%20a%20row%20already%20exists%20with%20the%20same%20values%20for%20the%20columns%20specified%20in%20%60uniqueKey%60%2C%20the%20row%20will%20be%20updated.%0A--%20If%20no%20row%20exists%20with%20the%20same%20values%20for%20the%20columns%20specified%20in%20%60uniqueKey%60%2C%20a%20new%20row%20will%20be%20inserted.%0A--%20More%20informations%3A%20https%3A%2F%2Fcloud.google.com%2Fdataform%2Fdocs%2Fincremental-tables%0A%0A--%20It%20is%20highly%20recommended%20to%20use%20incremental%20tables%20in%20your%20project%20since%20it%20can%20reduce%20a%20lot%20the%20costs%20of%20your%20queries.%0A%0ASELECT%0A%20%20dummy_ingestion_date%2C%0A%20%20dummy_country%2C%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A%0A%0A%0A')">
-            t_rpt_incremental_template
+        <div>
+            <h3>Tables/Views</h3>
+            
+                <div class="item" onclick="displayDetails('t_rpt_template', 'table', 'Reporting table for [usecase], ...', 'v_stg_template', '%0A%0ASELECT%0A%20%20dummy_ingestion_date%2C%0A%20%20dummy_country%2C%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A')">
+                    t_rpt_template
+                </div>
+            
+                <div class="item" onclick="displayDetails('v_rpt_template', 'view', 'Reporting view for [usecase], ...', 'v_stg_template', '%0A%0ASELECT%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A')">
+                    v_rpt_template
+                </div>
+            
+                <div class="item" onclick="displayDetails('v_stg_template', 'view', 'No description', 'dummy_table', '%0A%0ASELECT%0A%20%20CURRENT_DATE()%20AS%20dummy_ingestion_date%2C%0A%20%20%22FR%22%20AS%20dummy_country%2C%0A%20%201%20AS%20dummy_field%0AFROM%0A%20%20%60itg-btdpfront-gbl-ww-dv.dummy_dataset_dv.dummy_table%60%0A')">
+                    v_stg_template
+                </div>
+            
         </div>
     
-        <div class="item" onclick="displayDetails('t_rpt_template', 'table', 'Reporting table for [usecase], ...', 'v_stg_template', '%0A%0ASELECT%0A%20%20dummy_ingestion_date%2C%0A%20%20dummy_country%2C%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A')">
-            t_rpt_template
-        </div>
-    
-        <div class="item" onclick="displayDetails('v_rpt_template', 'view', 'Reporting view for [usecase], ...', 'v_stg_template', '%0A%0ASELECT%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A')">
-            v_rpt_template
-        </div>
-    
-        <div class="item" onclick="displayDetails('v_stg_template', 'view', 'No description', 'dummy_table', '%0A%0ASELECT%0A%20%20CURRENT_DATE()%20AS%20dummy_ingestion_date%2C%0A%20%20%22FR%22%20AS%20dummy_country%2C%0A%20%201%20AS%20dummy_field%0AFROM%0A%20%20%60itg-btdpfront-gbl-ww-dv.dummy_dataset_dv.dummy_table%60%0A')">
-            v_stg_template
-        </div>
-    
-        <div class="item" onclick="displayDetails('assert_data_freshness_template', 'undefined', 'Assert that ...', 't_rpt_template', '%0A%0A---%20assertion%20will%20fail%20if%20the%20following%20query%20returns%20any%20rows%0AWITH%0A%20%20freshness%20AS%20(%0A%20%20%20%20SELECT%0A%20%20%20%20%20%20DATE_DIFF(CURRENT_DATE()%2C%20MAX(dummy_ingestion_date)%2C%20DAY)%20AS%20delay%0A%20%20%20%20FROM%0A%20%20%20%20%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_reporting_eu_dv.t_rpt_template%60%0A%20%20)%0ASELECT%0A%20%20*%0AFROM%0A%20%20freshness%0AWHERE%0A%20%20delay%20%3E%201%0A')">
-            assert_data_freshness_template
+        <div>
+            <h3>Assertions</h3>
+            
+                <div class="item" onclick="displayDetails('assert_data_freshness_template', 'Assertion', 'Assert that ...', 't_rpt_template', '%0A%0A---%20assertion%20will%20fail%20if%20the%20following%20query%20returns%20any%20rows%0AWITH%0A%20%20freshness%20AS%20(%0A%20%20%20%20SELECT%0A%20%20%20%20%20%20DATE_DIFF(CURRENT_DATE()%2C%20MAX(dummy_ingestion_date)%2C%20DAY)%20AS%20delay%0A%20%20%20%20FROM%0A%20%20%20%20%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_reporting_eu_dv.t_rpt_template%60%0A%20%20)%0ASELECT%0A%20%20*%0AFROM%0A%20%20freshness%0AWHERE%0A%20%20delay%20%3E%201%0A')">
+                    assert_data_freshness_template
+                </div>
+            
         </div>
     
                     </div>

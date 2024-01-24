@@ -2,12 +2,33 @@ const fs = require('fs');
 const path = require('path');
 
 // Fonction pour générer une liste HTML à partir d'un tableau d'éléments
-function generateList(items) {
-    return items.map(item => `
-        <div class="item" onclick="displayDetails('${item.target.name}', '${item.type}', '${item.actionDescriptor ? item.actionDescriptor.description : 'No description'}', '${item.dependencyTargets ? item.dependencyTargets.map(target => target.name).join(', ') : 'No dependencies'}', '${item.query ? encodeURIComponent(item.query) : 'No query'}')">
-            ${item.target.name}
+function generateList(dataformJSON) {
+    const tablesViews = dataformJSON.tables.filter(item => item.type === 'table' || item.type === 'view');
+    const assertions = dataformJSON.assertions;
+
+    const tablesViewsHTML = `
+        <div>
+            <h3>Tables/Views</h3>
+            ${tablesViews.map(item => `
+                <div class="item" onclick="displayDetails('${item.target.name}', '${item.type}', '${item.actionDescriptor ? item.actionDescriptor.description : 'No description'}', '${item.dependencyTargets ? item.dependencyTargets.map(target => target.name).join(', ') : 'No dependencies'}', '${item.query ? encodeURIComponent(item.query) : 'No query'}')">
+                    ${item.target.name}
+                </div>
+            `).join('')}
         </div>
-    `).join('');
+    `;
+
+    const assertionsHTML = `
+        <div>
+            <h3>Assertions</h3>
+            ${assertions.map(item => `
+                <div class="item" onclick="displayDetails('${item.target.name}', 'Assertion', '${item.actionDescriptor ? item.actionDescriptor.description : 'No description'}', '${item.dependencyTargets ? item.dependencyTargets.map(target => target.name).join(', ') : 'No dependencies'}', '${item.query ? encodeURIComponent(item.query) : 'No query'}')">
+                    ${item.target.name}
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    return tablesViewsHTML + assertionsHTML;
 }
 
 // Fonction pour générer le fichier HTML à partir du JSON
@@ -72,7 +93,7 @@ function generateHTMLFromJSON(dataformJSON) {
                         <!-- Logo Dataform -->
                         <img src="img/dataform.png" alt="Dataform Logo" class="img-fluid mb-4 logo-align-middle">
                         <!-- Liste générée par JavaScript -->
-                        ${generateList(dataformJSON.tables.concat(dataformJSON.assertions))}
+                        ${generateList(dataformJSON)}
                     </div>
                     <div id="content" class="col-md-9">
                         <!-- Contenu généré par JavaScript -->
