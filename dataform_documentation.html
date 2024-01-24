@@ -5,29 +5,104 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Dataform Project Documentation</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    display: flex;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f8f9fa; /* Couleur de fond */
+                }
+                #sidebar {
+                    width: 25%;
+                    background-color: #ffffff; /* Couleur de fond de la barre latérale */
+                    padding: 20px;
+                    overflow: auto;
+                    border-right: 1px solid #dee2e6;
+                }
+                #sidebar img {
+                    max-width: 50%; /* Réduire la taille du logo */
+                    ali
+                }
+                #content {
+                    width: 75%;
+                    padding: 20px;
+                    overflow: auto;
+                    background-color: #ffffff; /* Couleur de fond du contenu */
+                }
+                .item {
+                    cursor: pointer;
+                    padding: 10px;
+                    margin-bottom: 5px;
+                    border-radius: 5px;
+                    transition: background-color 0.3s;
+                    background-color: #f8f9fa; /* Couleur de fond des éléments de la liste */
+                }
+                .item:hover {
+                    background-color: #e2e6ea; /* Couleur de fond au survol des éléments de la liste */
+                }
+                h2 {
+                    color: #007bff; /* Couleur du texte du titre */
+                }
+                strong {
+                    color: #dc3545; /* Couleur du texte en gras */
+                }
+            </style>
         </head>
         <body>
-            <h1>Dataform Project Documentation</h1>
-            
-            <h2>Tables</h2>
-            <ul>
-                <li>t_rpt_incremental_template</li><li>t_rpt_template</li><li>v_rpt_template</li><li>v_stg_template</li>
-            </ul>
-            
-            <h2>Assertions</h2>
-            <ul>
-                <li>assert_data_freshness_template</li>
-            </ul>
-            
-            <h2>Declarations</h2>
-            <ul>
-                <li>dummy_table</li>
-            </ul>
-            
-            <h2>Targets</h2>
-            <ul>
-                <li>assert_data_freshness_template</li><li>t_rpt_incremental_template</li><li>t_rpt_template</li><li>v_rpt_template</li><li>dummy_table</li><li>v_stg_template</li>
-            </ul>
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="sidebar" class="col-md-3 text-center">
+                        <!-- Logo Dataform -->
+                        <img src="img/dataform.png" alt="Dataform Logo" class="img-fluid mb-4 logo-align-middle">
+                        <!-- Liste générée par JavaScript -->
+                        
+        <div class="item" onclick="displayDetails('t_rpt_incremental_template', 'incremental', 'Reporting table for [usecase], ...', 'v_stg_template', '%0A%0A--%20Dataform%20allows%20you%20to%20make%20UPSERTS%20(INSERT%20OR%20UPDATE)%20into%20your%20target%20table%20using%20incremental%20tables.%0A--%20You%20can%20use%20the%20%60uniqueKey%60%20configuration%20to%20specify%20the%20columns%20that%20should%20be%20used%20to%20determine%20whether%20a%20row%20already%20exists%20in%20the%20target%20table.%0A--%20If%20a%20row%20already%20exists%20with%20the%20same%20values%20for%20the%20columns%20specified%20in%20%60uniqueKey%60%2C%20the%20row%20will%20be%20updated.%0A--%20If%20no%20row%20exists%20with%20the%20same%20values%20for%20the%20columns%20specified%20in%20%60uniqueKey%60%2C%20a%20new%20row%20will%20be%20inserted.%0A--%20More%20informations%3A%20https%3A%2F%2Fcloud.google.com%2Fdataform%2Fdocs%2Fincremental-tables%0A%0A--%20It%20is%20highly%20recommended%20to%20use%20incremental%20tables%20in%20your%20project%20since%20it%20can%20reduce%20a%20lot%20the%20costs%20of%20your%20queries.%0A%0ASELECT%0A%20%20dummy_ingestion_date%2C%0A%20%20dummy_country%2C%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A%0A%0A%0A')">
+            t_rpt_incremental_template
+        </div>
+    
+        <div class="item" onclick="displayDetails('t_rpt_template', 'table', 'Reporting table for [usecase], ...', 'v_stg_template', '%0A%0ASELECT%0A%20%20dummy_ingestion_date%2C%0A%20%20dummy_country%2C%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A')">
+            t_rpt_template
+        </div>
+    
+        <div class="item" onclick="displayDetails('v_rpt_template', 'view', 'Reporting view for [usecase], ...', 'v_stg_template', '%0A%0ASELECT%0A%20%20dummy_field%0AFROM%0A%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_staging_eu_dv.v_stg_template%60%0A')">
+            v_rpt_template
+        </div>
+    
+        <div class="item" onclick="displayDetails('v_stg_template', 'view', 'No description', 'dummy_table', '%0A%0ASELECT%0A%20%20CURRENT_DATE()%20AS%20dummy_ingestion_date%2C%0A%20%20%22FR%22%20AS%20dummy_country%2C%0A%20%201%20AS%20dummy_field%0AFROM%0A%20%20%60itg-btdpfront-gbl-ww-dv.dummy_dataset_dv.dummy_table%60%0A')">
+            v_stg_template
+        </div>
+    
+        <div class="item" onclick="displayDetails('assert_data_freshness_template', 'undefined', 'Assert that ...', 't_rpt_template', '%0A%0A---%20assertion%20will%20fail%20if%20the%20following%20query%20returns%20any%20rows%0AWITH%0A%20%20freshness%20AS%20(%0A%20%20%20%20SELECT%0A%20%20%20%20%20%20DATE_DIFF(CURRENT_DATE()%2C%20MAX(dummy_ingestion_date)%2C%20DAY)%20AS%20delay%0A%20%20%20%20FROM%0A%20%20%20%20%20%20%60emea-sbxhrialan-gbl-emea-dv.d_uc_infra_reporting_eu_dv.t_rpt_template%60%0A%20%20)%0ASELECT%0A%20%20*%0AFROM%0A%20%20freshness%0AWHERE%0A%20%20delay%20%3E%201%0A')">
+            assert_data_freshness_template
+        </div>
+    
+                    </div>
+                    <div id="content" class="col-md-9">
+                        <!-- Contenu généré par JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <script>
+                // Fonction pour afficher les détails dans le contenu
+                function displayDetails(name, type, description, dependencies, query) {
+                    const decodedQuery = decodeURIComponent(query);
+                    document.getElementById('content').innerHTML = `
+                        <h2 class="mt-4">${name}</h2>
+                        <p class="lead"><strong>Type:</strong> ${type}</p>
+                        <p><strong>Description:</strong> ${description}</p>
+                        <p><strong>Dependencies:</strong> ${dependencies}</p>
+                        </br>
+                        <pre><code class="sql">${decodedQuery}</code></pre>
+                    `;
+                }
+            </script>
         </body>
         </html>
     
